@@ -6,7 +6,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped text-center">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -14,6 +14,7 @@
                             <th>Qty</th>
                             <th>Harga Beli</th>
                             <th>Harga Jual</th>
+                            <th>Gambar</th>
                             <th>Aksi</th>
                         </tr> 
                     </thead>
@@ -25,6 +26,14 @@
                                 <td><?= $isi['qty'];?></td>
                                 <td>Rp<?= number_format($isi['harga_beli']);?>,-</td>
                                 <td>Rp<?= number_format($isi['harga_jual']);?>,-</td>
+                                <td>
+                                <?php if (!empty($isi['gambar'])) : ?>
+                                    <img src="<?= base_url('uploads/barang/'.$isi['gambar']); ?>" width="60">
+                                <?php else : ?>
+                                    <small>-</small>
+                                <?php endif; ?>
+                                </td>
+
                                 <td>
                                     <a href="<?= base_url('barang/edit/'.$isi['id_barang']);?>" 
                                     class="btn btn-success">

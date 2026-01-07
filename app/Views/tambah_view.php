@@ -5,7 +5,7 @@
             <h4 class="card-title">Tambah Data Barang</h4>
         </div>
         <div class="card-body">
-            <form method="post" action="<?= base_url('barang/add');?>">
+            <form method="post" action="<?= base_url('barang/add');?>" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="">Nama Barang</label>
                     <input type="text" name="nama" class="form-control" required>
@@ -21,6 +21,10 @@
                 <div class="form-group">
                     <label for="">Harga Jual</label>
                     <input type="number" name="jual" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Gambar</label>
+                    <input type="file" name="gambar" class="form-control" accept="image/*">
                 </div>
                 <button class="btn btn-success">Tambah Data</button>
             </form>
