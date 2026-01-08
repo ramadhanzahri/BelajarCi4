@@ -9,7 +9,7 @@ class Barang extends Controller
     public function index()
     {
         $model = new Barang_model;
-        $data['title']     = 'Data Barang';
+        $data['title'] = 'Data Barang';
         $data['getBarang'] = $model->getBarang();
         echo view('header_view', $data);
         echo view('barang_view', $data);
@@ -18,7 +18,7 @@ class Barang extends Controller
 
     public function tambah()
     {
-        $data['title']     = 'Tambah Data Barang';
+        $data['title'] = 'Tambah Data Barang';
         echo view('header_view', $data);
         echo view('tambah_view', $data);
         echo view('footer_view', $data);
@@ -27,14 +27,12 @@ class Barang extends Controller
     public function add()
 {
     $model = new Barang_model;
-
-    // default: tidak ada gambar
     $namaGambar = null;
 
-    $fileGambar = $this->request->getFile('gambar'); // name="gambar" di form [web:94]
+    $fileGambar = $this->request->getFile('gambar');
     if ($fileGambar && $fileGambar->isValid() && ! $fileGambar->hasMoved()) {
-        $namaGambar = $fileGambar->getRandomName(); // nama acak [web:105]
-        $fileGambar->move($this->uploadPath, $namaGambar); // pindahkan file [web:105]
+        $namaGambar = $fileGambar->getRandomName();
+        $fileGambar->move($this->uploadPath, $namaGambar);
     }
 
     $data = array(
@@ -44,7 +42,6 @@ class Barang extends Controller
         'harga_jual' => $this->request->getPost('jual'),
         'gambar' => $namaGambar,
     );
-
     $model->saveBarang($data);
 
     echo '<script>
@@ -61,7 +58,7 @@ class Barang extends Controller
         if(isset($getBarang))
         {
             $data['barang'] = $getBarang;
-            $data['title']  = 'Edit '.$getBarang->nama_barang;
+            $data['title'] = 'Edit '.$getBarang->nama_barang;
 
             echo view('header_view', $data);
             echo view('edit_view', $data);
@@ -81,18 +78,15 @@ class Barang extends Controller
     $model = new Barang_model;
     $id = $this->request->getPost('id_barang');
 
-    // ambil data lama untuk tahu nama file gambar sebelumnya
     $barangLama = $model->getBarang($id)->getRow();
     $gambarLama = isset($barangLama->gambar) ? $barangLama->gambar : null;
 
-    $namaGambar = $gambarLama; // default tetap pakai gambar lama
+    $namaGambar = $gambarLama;
 
-    $fileGambar = $this->request->getFile('gambar'); // [web:94]
+    $fileGambar = $this->request->getFile('gambar');
     if ($fileGambar && $fileGambar->isValid() && ! $fileGambar->hasMoved()) {
-        $namaGambar = $fileGambar->getRandomName(); // [web:105]
-        $fileGambar->move($this->uploadPath, $namaGambar); // [web:105]
-
-        // hapus file lama (kalau ada)
+        $namaGambar = $fileGambar->getRandomName();
+        $fileGambar->move($this->uploadPath, $namaGambar);
         if (!empty($gambarLama) && file_exists($this->uploadPath . $gambarLama)) {
             unlink($this->uploadPath . $gambarLama);
         }
@@ -105,7 +99,6 @@ class Barang extends Controller
         'harga_jual' => $this->request->getPost('jual'),
         'gambar' => $namaGambar,
     );
-
     $model->editBarang($data, $id);
 
     echo '<script>
@@ -121,11 +114,9 @@ class Barang extends Controller
     $getBarang = $model->getBarang($id)->getRow();
 
     if (isset($getBarang)) {
-        // hapus file gambar dulu (kalau ada)
         if (!empty($getBarang->gambar) && file_exists($this->uploadPath . $getBarang->gambar)) {
             unlink($this->uploadPath . $getBarang->gambar);
         }
-
         $model->hapusBarang($id);
 
         echo '<script>

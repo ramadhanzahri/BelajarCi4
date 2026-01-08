@@ -30,7 +30,6 @@
                     <small>(Belum ada gambar)</small>
                 <?php endif; ?>
                 </div>
-
                 <div class="form-group">
                 <label>Ganti Gambar</label>
                 <input type="file" name="gambar" class="form-control" accept="image/*">

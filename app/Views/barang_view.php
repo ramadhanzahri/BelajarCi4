@@ -33,7 +33,6 @@
                                     <small>-</small>
                                 <?php endif; ?>
                                 </td>
-
                                 <td>
                                     <a href="<?= base_url('barang/edit/'.$isi['id_barang']);?>" 
                                     class="btn btn-success">
