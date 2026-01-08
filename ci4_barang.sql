@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2026 at 08:13 AM
+-- Generation Time: Jan 08, 2026 at 03:35 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,17 +32,17 @@ CREATE TABLE `barang` (
   `nama_barang` varchar(255) NOT NULL,
   `qty` int(11) NOT NULL,
   `harga_beli` int(11) NOT NULL,
-  `harga_jual` int(11) NOT NULL
+  `harga_jual` int(11) NOT NULL,
+  `gambar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `nama_barang`, `qty`, `harga_beli`, `harga_jual`) VALUES
-(1, 'Bola Voli', 12, 80000, 120000),
-(3, 'Handphone', 5, 5000000, 4500000),
-(4, 'Laptop', 5, 5000000, 4500000);
+INSERT INTO `barang` (`id_barang`, `nama_barang`, `qty`, `harga_beli`, `harga_jual`, `gambar`) VALUES
+(1, 'Laptop', 5, 10000000, 10000000, '1767796415_4967e89faeb111bab3e0.jpg'),
+(3, 'Nasi', 20, 2000, 2000, '1767796238_4913353ffabf3959e29c.jpg');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +62,7 @@ ALTER TABLE `barang`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
