@@ -12,3 +12,4 @@ $routes->get('barang/edit/(:any)', 'Barang::edit/$1');
 $routes->post('barang/add', 'Barang::add');
 $routes->post('barang/update', 'Barang::update');
 $routes->get('barang/hapus/(:any)', 'Barang::hapus/$1');
+$routes->get('barang/gambar/(:segment)', 'Barang::gambar/$1');

@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label>Gambar Saat Ini</label><br>
                 <?php if (!empty($barang->gambar)) : ?>
-                    <img src="<?= base_url('uploads/barang/'.$barang->gambar); ?>" width="120">
+                    <img src="<?= base_url('barang/gambar/'.$barang->gambar); ?>" width="120">
                 <?php else : ?>
                     <small>(Belum ada gambar)</small>
                 <?php endif; ?>

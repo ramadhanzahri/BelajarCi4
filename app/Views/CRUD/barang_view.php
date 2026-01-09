@@ -28,7 +28,7 @@
                                 <td>Rp<?= number_format($isi['harga_jual']);?>,-</td>
                                 <td>
                                 <?php if (!empty($isi['gambar'])) : ?>
-                                    <img src="<?= base_url('uploads/barang/'.$isi['gambar']); ?>" width="60">
+                                    <img src="<?= base_url('barang/gambar/'.$isi['gambar']); ?>" width="60">
                                 <?php else : ?>
                                     <small>-</small>
                                 <?php endif; ?>
