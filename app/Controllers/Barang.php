@@ -32,12 +32,12 @@ class Barang extends Controller
     public function index()
     {
         $data = [
-        'title' => 'Data Barang',
-        'getBarang' => $this->barangModel->getBarang(),
+            'title' => 'Data Barang',
+            'getBarang' => $this->barangModel->getBarang(),
         ];
         echo view('CRUD/header_view', $data);
-        echo view('CRUD/barang_view', $data);
-        echo view('CRUD/footer_view', $data);
+        echo view('CRUD/barang_view');
+        echo view('CRUD/footer_view');
     }
 
     public function tambah()
@@ -46,8 +46,8 @@ class Barang extends Controller
             'title' => 'Tambah Data Barang',
         ];
         echo view('CRUD/header_view', $data);
-        echo view('CRUD/tambah_view', $data);
-        echo view('CRUD/footer_view', $data);
+        echo view('CRUD/tambah_view');
+        echo view('CRUD/footer_view');
     }
 
     public function add()
@@ -77,22 +77,22 @@ class Barang extends Controller
             'gambar' => $namaGambar,
         ];
         $this->barangModel->saveBarang($data);
-        return redirect()->to(base_url('barang'))->with('success', 'Sukses Tambah Data Barang');
+        return redirect()->to('barang')->with('success', 'Sukses Tambah Data Barang');
     }
 
     public function edit($id)
     {
         $barang = $this->barangModel->getBarang($id)->getRow();
         if(! isset($barang)) {
-            return redirect()->to(base_url('barang'))->with('error', 'ID barang '.$id.' Tidak ditemukan');
+            return redirect()->to('barang')->with('error', 'ID barang '.$id.' Tidak ditemukan');
         }
         $data = [
             'title' => 'Edit' . $barang->nama_barang,
             'barang' => $barang,
         ];
         echo view('CRUD/header_view', $data);
-        echo view('CRUD/edit_view', $data);
-        echo view('CRUD/footer_view', $data);
+        echo view('CRUD/edit_view');
+        echo view('CRUD/footer_view');
     }
 
     public function update()
@@ -112,7 +112,7 @@ class Barang extends Controller
         $id = $this->request->getPost('id_barang');
         $barangLama = $this->barangModel->getBarang($id)->getRow();
         if(! isset($barangLama)) {
-            return redirect()->to(base_url('barang'))->with('error', 'ID barang '.$id.' Tidak ditemukan');
+            return redirect()->to('barang')->with('error', 'ID barang '.$id.' Tidak ditemukan');
         }
 
         $gambarLama = $barangLama->gambar ?? null;
@@ -137,14 +137,14 @@ class Barang extends Controller
             'gambar' => $namaGambar,
         ];
         $this->barangModel->editBarang($data, $id);
-        return redirect()->to(base_url('barang'))->with('success', 'Sukses Update Data Barang');
+        return redirect()->to('barang')->with('success', 'Sukses Update Data Barang');
     }
 
     public function hapus($id)
     {
         $barang = $this->barangModel->getBarang($id)->getRow();
         if(! isset($barang)) {
-            return redirect()->to(base_url('barang'))->with('error', 'ID barang '.$id.' Tidak ditemukan');
+            return redirect()->to('barang')->with('error', 'ID barang '.$id.' Tidak ditemukan');
         }
         if(! empty($barang->gambar)) {
             $path = $this->uploadDir . $barang->gambar;
@@ -153,7 +153,7 @@ class Barang extends Controller
             }
         }
         $this->barangModel->hapusBarang($id);
-        return redirect()->to(base_url('barang'))->with('success', 'Sukses Hapus Data Barang');
+        return redirect()->to('barang')->with('success', 'Sukses Hapus Data Barang');
     }
 
     public function gambar($filename)
